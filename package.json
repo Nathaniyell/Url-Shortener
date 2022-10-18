@@ -1,7 +1,7 @@
 {
-  "name": "link-shortener",
+  "name": "url-shortener",
   "version": "0.1.0",
-  "homepage": "https://nathaniyell.github.io/Link-Shortener",
+  "homepage": "https://nathaniyell.github.io/Url-Shortener",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
