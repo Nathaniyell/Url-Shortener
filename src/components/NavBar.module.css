@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+:root{
+--Cyan: hsl(180, 66%, 49%);
+--Dark-Violet: hsl(257, 27%, 26%);
+--Gray: hsl(0, 0%, 75%);
+--Grayish-Violet: hsl(257, 7%, 63%);
+--Very-Dark-Blue: hsl(255, 11%, 22%);
+--Very-Dark-Violet: hsl(260, 8%, 14%);
+--Red: hsl(0, 87%, 67%);
+}
+.nav{    
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #fff;
+    position: fixed;
+    z-index: 4000;
+    top: 0;
+    
+}
+.navBtn{
+   
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--Grayish-Violet);
+}
+.navLinks{
+    position: absolute;
+    top: 90px;
+    left: 40px;
+    background-color: var(--Very-Dark-Violet);
+    width: 80%;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    border-radius: 12px;
+   align-self: center;
+}
+.navLinks li{
+    color: var(--Gray);
+    font-size: 1.1rem;
+    font-weight: 900;
+}
+.navLinks2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    justify-content: space-around;
+    height: 130px;
+    width: 280px;
+    border-top: 0.1rem solid var(--Gray);
+}
+.navLinks2 li:nth-last-child(1){
+    background-color: var(--Cyan);
+    width: 80%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    color: #fff;
+}
+.navDesktop{
+    display: flex;
+    color: var(--Very-Dark-Violet);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    width: 85%;
+    height: 100%;
+    border-radius: 0;
+    display: none;
+}
+.navDesktop .navLinks2{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+}
+.navDesktop li:nth-last-child(1){
+    background-color: var(--Cyan);
+    width: auto;
+    text-align: center;
+    padding: 10px 25px;
+    border-radius: 20px;
+    color: #fff;
+}
+@media(min-width: 768px){
+    
+    .navDesktop{
+        margin-left: 20px;
+        display: flex;
+
+        }
+    .navDesktop li{
+         color: var(--Very-Dark-Violet);
+    }
+    .navBtn{
+        display: none;
+    }
+}
