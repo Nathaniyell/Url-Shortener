@@ -34,7 +34,7 @@ padding-bottom: 60px;
 @media(min-width: 768px){
   height: 50vh;
 }
-@media(min-width: 1200px){
+@media(min-width: 922px){
   height: 90vh;
   padding-bottom: 40px;
 }
@@ -46,7 +46,7 @@ const [links, setNewLink] = useState([])
 
 function addLinks(originalLink, shortLink){
 setNewLink(prevLinks =>{
-  return[...prevLinks, { oldLink: originalLink, shortenedLink: shortLink, id: Math.random().toString() }]
+  return[{ oldLink: originalLink, shortenedLink: shortLink, id: Math.random().toString() }, ...prevLinks]
 })
 }
 
