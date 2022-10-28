@@ -10,7 +10,7 @@ const Card = styled.div`
     height: 270px;
     padding: 15px;
     text-align: center;   
-    margin: 0 auto;
+    margin: 0 auto 40px;
     @media(min-width: 562px){
         height: 200px;
     }
@@ -19,8 +19,9 @@ const Card = styled.div`
 
     }
     @media(min-width: 922px){
-       height: 60%;
-
+       height: 90%;
+       display: grid;
+       place-items: center;
     }
 
 

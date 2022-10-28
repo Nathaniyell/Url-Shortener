@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const FooterStyles = styled.footer`
 background: hsl(255, 11%, 22%);
-height: 50vh;
+// height: 70vh;
 width: 100%;
 padding: 20px;
 text-align: center;

@@ -5,6 +5,7 @@ import bgShortenDesk from "../images/bg-shorten-desktop.svg";
 
 
 
+
 const Form = styled.form`
   background-image: url(${bgShortenMobile});
   background-color: hsl(260, 26%, 20%);
@@ -38,8 +39,8 @@ const Form = styled.form`
     margin-top: -15px;
   }
   & input {
-    border: 1px solid ${(props) => (props.valid ? "black" : "hsl(0, 87%, 67%)")};
-    color: ${(props) => (props.valid ? "black" : "hsl(0, 87%, 67%)")};
+    border: 1px solid ${(props) => (props.valid ? "hsl(0, 87%, 67%)" : 'black')};
+    color: ${(props) => (props.valid ? "hsl(0, 87%, 67%)" : "black")};
     font-size: 1rem;
     height: 38px;
     padding: 0.9rem 0;
@@ -87,65 +88,62 @@ const Form = styled.form`
 `;
 
 const GetLinks = (props) => {
-  const [formData, setFormData] = useState({
-    link: "",
-    isValid: true,
-  });
+  const [formData, setFormData] = useState('');
+  const [isValid, setIsValid] = useState(true)
 
-  const [finalPoint, setFinalPoint] = useState("");
   const [container, setContainer] = useState('');
 
   function inputChangeHandler(event) {
-    setFormData((prevState) => ({
-      ...prevState,
-      link: event.target.value,
-    }));
+    setFormData(event.target.value)
   }
 
+  const getData = async () => {
+    if(formData === ''){
+      return
+    }
+    let response = await fetch(`https://api.shrtco.de/v2/shorten?url=${formData}`)
+    let link = await response.json()
+    let shortlink = link.result.short_link
+    setContainer(shortlink)
+
+  }
   useEffect(() => {
-    fetch(`https://api.shrtco.de/v2/shorten?url=${finalPoint}`)
-      .then((res) => res.json())
-      .then((data) => setContainer(data.result.short_link));
-  }, [finalPoint]);
+  getData()
+  });
 
   function formSubmitHandler(event) {
     event.preventDefault();
-    if (formData.link.trim().length === 0) {
-      setFormData((prevValue) => ({
-        ...prevValue,
-        isValid: false,
-      }));
+    if (formData.trim().length === 0) {
+      setIsValid(false)
       return;
     }
-    setFinalPoint(formData.link);
+    setIsValid(true)
+    getData()
+    props.onNewLinks(formData, container);
 
-    props.onNewLinks(formData.link, container);
-
-    setFormData({
-      link: "",
-      isValid: true,
-    });
-    // console.log(formData.link)
+    setFormData('');
+    setIsValid(true)
+    console.log(formData)
   }
 
   return (
     <>
-      <Form onSubmit={formSubmitHandler} valid={formData.isValid}>
+      <Form onSubmit={formSubmitHandler} valid={!isValid}>
         <div className="input-div">
           <input
             type="text"
             name="link"
             onChange={inputChangeHandler}
-            value={formData.link}
+            value={formData}
             placeholder="Shorten a link here..."
           />
-          <button type="submit" disabled={!formData.isValid}>
+          <button type="submit">
             Shorten It!
           </button>
         </div>
-        {!formData.isValid && <p>Please enter a link</p>}
+        {!isValid && <p>Please enter a link</p>}
       </Form>
-     
+
     </>
   );
 };

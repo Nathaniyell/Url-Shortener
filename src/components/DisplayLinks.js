@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 const ListItems = styled.ul`
@@ -14,10 +14,11 @@ const ListItems = styled.ul`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-  }
+    }
+
   .first-span{
     color: hsl(260, 8%, 14%);
     border-bottom: 1px solid hsl(260, 8%, 14%);
@@ -32,8 +33,7 @@ const ListItems = styled.ul`
         height: 32px;
         text-align: center;
         border: none;
-        background-color: ${(props) =>
-          props.checkCopy ? "purple" : "hsl(180, 66%, 49%)"};
+        background-color: ${(props) => props.checkCopy ? 'purple' : "hsl(180, 66%, 49%)"};
         color: #fff;
         font-size: 1rem;
         font-weight: 600;
@@ -42,33 +42,39 @@ const ListItems = styled.ul`
         &:hover {
          opacity: 0.8;
     }
-
-`;
+  
+  }
+  @media(min-width: 768px){
+    li{
+      flex-direction: row; 
+    }
+    button{
+      width: 15%;
+    } 
+    .first-span{
+      width: 40%;
+      border-bottom: none;
+    }
+  }
+  `;
 
 const DisplayLinks = (props) => {
-  const [copied, setCopied] = useState(false);
-  function copy(e) {
-    setCopied(true);
-    console.log(e.target);
-    alert("Copied!!");
-  }
-  return (
+const [copied, setCopied] = useState(false)
+
+function copyHandler(){
+  setCopied(oldValue =>!oldValue)
+  // navigator.clipboard.writeText(value)
+
+}
+  
+   return (
     <ListItems checkCopy={copied}>
       {props.onAddNewLink.map((link) => {
         return (
-          <li key={link.id}>
+          <li key={props.key}>
             <span className="first-span">{link.oldLink}</span>
             <span className="second-span">{link.shortenedLink}</span>
-            <button
-              type="button"
-              onClick={() => {
-                navigator.clipboard.writeText(link.shortenedLink);
-                copy();
-              }}
-              disabled={copied}
-            >
-              {copied ? "Copied!!" : "Copy"}
-            </button>
+            <button type="button" onClick={copyHandler}>{copied? 'Copied!' : 'Copy'}</button>
           </li>
         );
       })}
