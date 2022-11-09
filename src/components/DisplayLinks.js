@@ -63,7 +63,7 @@ const [copied, setCopied] = useState(false)
 
 function copyHandler(){
   setCopied(oldValue =>!oldValue)
-  // navigator.clipboard.writeText(value)
+  // navigator.clipboard.writeText(val)
 
 }
   
