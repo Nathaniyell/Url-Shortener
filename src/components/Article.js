@@ -30,8 +30,7 @@ h1{
   height: 150px;
 }
 @media(min-width:922px){
-  // margin-top: 50px;
-  height: 130px;
+    height: 130px;
 }
 
 
